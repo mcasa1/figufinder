@@ -9,7 +9,7 @@ const { concat } = require('ethers/lib/utils')
 require('dotenv').config()
 const path = require("path")
 
-mongoose.connect(process.env.URI, { useNewUrlParser: true });
+const uri = process.env.URI
 
 const app = express()
 app.use(cors())

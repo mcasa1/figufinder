@@ -13,18 +13,13 @@ const uri = process.env.URI
 
 const app = express()
 app.use(cors())
-
+app.use(express.json())
+app.use(express.static(path.join(__dirname, "client", "build")))
 // Default
 app.get('/', (req, res) => {
     res.json('Hello to my app')
 })
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-    app.use(express.static('client/build'));
-    app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
-    });
-   }
 
 // Sign up to the Database
 app.post('/signup', async (req, res) => {
@@ -487,6 +482,8 @@ app.post('/message', async (req, res) => {
         await client.close()
     }
 })
-
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT, () => console.log('server running on PORT ' + PORT))

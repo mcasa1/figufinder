@@ -5,7 +5,7 @@ const {v4: uuidv4} = require('uuid')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
 const bcrypt = require('bcrypt')
-const { concat } = require('ethers/lib/utils')
+
 require('dotenv').config()
 const path = require("path")
 

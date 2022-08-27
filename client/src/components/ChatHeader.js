@@ -17,8 +17,11 @@ let navigate = useNavigate()
     return (
         <div className="chat-container-header">
             <div className="profile">
-            <h3 onClick={toUser} >Zonas</h3>
+            
                 <h3 >{user.nombre}</h3>
+                <br/>
+                <br/>
+                <button onClick={toUser} >Zonas</button>
             </div>
             <i className="log-out-icon" onClick={logout}>Logout</i>
         </div>

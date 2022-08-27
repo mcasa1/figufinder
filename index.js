@@ -280,8 +280,13 @@ app.get('/match', async (req, res) => {
                     const user = await users.updateOne(query, updateDocument)
                 }
                 }  
+            } else {
+                console.log('no matches')
+                break
             }
         }
+    
+        
     } finally {
         await client.close()
     }

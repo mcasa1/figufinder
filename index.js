@@ -374,7 +374,7 @@ app.put('/user', async (req, res) => {
                 
             },
             $push: {
-                zonas : formData.zonas,
+                zonas : formData.zonas.toLowerCase(),
             }
         }
         

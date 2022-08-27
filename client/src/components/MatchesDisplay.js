@@ -16,26 +16,26 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
       const response = await axios.get("/match", {
         params: { userId },
       });
-      
+      setUser(response.data)
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get("/user", {
-        params: { userId },
-      });
-      setUser(response.data)
+  // const getUser = async () => {
+  //   try {
+  //     const response = await axios.get("/user", {
+  //       params: { userId },
+  //     });
+  //     setUser(response.data)
       
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   useEffect(() => {
-    getUser();
+    
     getMatch();
   }, [matches]);
  

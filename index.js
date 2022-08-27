@@ -432,7 +432,7 @@ app.put('/addzona', async (req, res) => {
 
         const updateDocument = {
             $push: {
-                zonas: formDataZona.zonas
+                zonas: formDataZona.zonas.toLowerCase()
             },
         }
 

@@ -85,7 +85,7 @@ app.post('/login', async (req, res) => {
             res.status(201).json({token, userId: user.user_id})
         }
 
-         res.status(400).json('Invalid Credentials')
+        return res.status(400).json('Invalid Credentials')
 
     } catch (err) {
         console.log(err)
@@ -467,7 +467,7 @@ app.post('/message', async (req, res) => {
     }
 })
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    return res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.listen(port, () => console.log('server running on PORT ' + port))

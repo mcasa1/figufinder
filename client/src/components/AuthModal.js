@@ -11,7 +11,7 @@ const AuthModal = ({ setShowModal,  isSignUp }) => {
     const [error, setError] = useState(null)
     const [ cookies, setCookie, removeCookie] = useCookies(null)
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
 
     console.log(email, password, confirmPassword)
 
@@ -36,7 +36,7 @@ const AuthModal = ({ setShowModal,  isSignUp }) => {
 
             const success = response.status === 201
             if (success && isSignUp) navigate ('/onboarding')
-            if (success && !isSignUp) navigate ('/dashboard')
+            if (success && !isSignUp) navigate ('/Dashboard')
 
             window.location.reload()
 

@@ -46,7 +46,7 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
 
   return (
     <div className="dashboard">
-      <button onClick={getMatches()}> Get Matches</button>
+      <button onClick={getMatch()}> Get Matches</button>
       <h1>Matches</h1>
       
       

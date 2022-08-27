@@ -220,9 +220,9 @@ app.get('/match', async (req, res) => {
 
         for (let i = 0; i < usersFiltered.length; i++) {
             const userFiltered = usersFiltered[i]
-            const userFilteredHave = userFiltered.have
-            const userFilteredNeed = userFiltered.need
-            const userFilteredZonas = userFiltered.zonas
+            const userFilteredHave = userFiltered.have || []
+            const userFilteredNeed = userFiltered.need || []
+            const userFilteredZonas = userFiltered.zonas || []
             
             const userHave = user.have
             const userNeed = user.need
@@ -233,11 +233,10 @@ app.get('/match', async (req, res) => {
            
             const userMatchesHas = userMatches.map(matches => matches.has)
             const userMatchesNeeds = userMatches.map(matches => matches.needs)
-            
-            const match = userFilteredHave.filter(item => userNeed.includes(item))
-            const match2 = userFilteredNeed.filter(item => userHave.includes(item))
-            const match3 = userFilteredZonas.filter(item => userZonas.includes(item))
-
+            const match = (userFilteredHave || []).filter(item => userNeed.includes(item))
+            const match2 = (userFilteredNeed || []).filter(item => userHave.includes(item))
+            const match3 = (userFilteredZonas || []).filter(item => userZonas.includes(item))
+         
             const findCommonZona = (userFilteredZonas, userZonas) => {
                 for (let i = 0; i < userFilteredZonas.length; i++) {
                     for (let j = 0; j < userZonas.length; j++) {

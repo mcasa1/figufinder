@@ -22,22 +22,7 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
     }
   };
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get("/user", {
-        params: { userId },
-      });
-      setUser(response.data)
-      
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
-  useEffect(() => {
-    getUser();
-    
-  }, );
  
 
 

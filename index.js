@@ -82,7 +82,7 @@ app.post('/login', async (req, res) => {
             const token = jwt.sign(user, email, {
                 expiresIn: 60 * 24
             })
-            res.status(201).json({token, userId: user.user_id})
+            return res.status(201).json({token, userId: user.user_id})
         }
 
         return res.status(400).json('Invalid Credentials')
@@ -106,7 +106,7 @@ app.get('/user', async (req, res) => {
 
         const query = {user_id: userId}
         const user = await users.findOne(query)
-        res.send(user)
+        return res.send(user)
         
 
     } finally {

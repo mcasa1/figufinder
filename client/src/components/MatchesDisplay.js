@@ -22,7 +22,22 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
     }
   };
 
+  const getUser = async () => {
+    try {
+      const response = await axios.get("/user", {
+        params: { userId },
+      });
+      setUser(response.data)
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
+  useEffect(() => {
+    getUser();
+    getMatch();
+  }, [matches]);
  
 
 
@@ -31,9 +46,7 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
 
   return (
     <div className="dashboard">
-      <button onClick={getMatch()}> Get Matches</button>
       <h1>Matches</h1>
-      
       
       <div className="match-container">
         {user &&

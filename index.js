@@ -116,6 +116,7 @@ app.get('/user', async (req, res) => {
 
 
 
+
 // Add have
 app.put('/addhave', async (req, res) => {
     const client = new MongoClient(uri)
@@ -216,7 +217,7 @@ app.get('/match', async (req, res) => {
             const userFiltered = usersFiltered[i]
             const userFilteredHave = userFiltered.have
             const userFilteredNeed = userFiltered.need
-            userFilteredZonas = userFiltered.zonas
+            const userFilteredZonas = userFiltered.zonas
             const userFilteredZonasString = JSON.stringify(userFilteredZonas)
 
             const userHave = user.have
@@ -236,10 +237,10 @@ app.get('/match', async (req, res) => {
             const userZonasString = JSON.stringify(userZonas)
             // Check if users match at at least one zona
             
-            const findCommonZona = (userFilteredZonasString, userZonasString) => {
-                for (let i = 0; i < userFilteredZonasString.length; i++) {
-                    for (let j = 0; j < userZonasString.length; j++) {
-                        if (userFilteredZonasString[i] === userZonasString[j]) {
+            const findCommonZona = (userFilteredZonas, userZonas) => {
+                for (let i = 0; i < userFilteredZonas.length; i++) {
+                    for (let j = 0; j < userZonas.length; j++) {
+                        if (userFilteredZonas[i] === userZonas[j]) {
                             return true
                         }
                     }   
@@ -247,7 +248,7 @@ app.get('/match', async (req, res) => {
                 return false
             }
 
-            if (match.length > 0 && match2.length > 0 && findCommonZona(userFilteredZonasString, userZonasString)) {
+            if (match.length > 0 && match2.length > 0 && findCommonZona(userFilteredZonas, userZonas)) {
             
             const matches  = {user_id : userFiltered.user_id, nombre : userFiltered.nombre, apellido : userFiltered.apellido, has : match, needs : match2}
             const matchesString = JSON.stringify(matches)

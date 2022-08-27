@@ -84,7 +84,7 @@ const OnBoarding = () => {
                             onChange={handleChange}
                         />
 
-                        <label htmlFor="zonas">Zonas</label>
+                        <label htmlFor="zonas">Zona: (Carga una sola, despues podes cargar más)</label>
                         <input
                             id="zonas"
                             type='text'

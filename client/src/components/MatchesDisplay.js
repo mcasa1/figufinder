@@ -36,8 +36,8 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
 
   useEffect(() => {
     getUser();
-    getMatch();
-  }, [matches]);
+    
+  }, );
  
 
 
@@ -46,7 +46,9 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
 
   return (
     <div className="dashboard">
+      <button onClick={getMatches()}> Get Matches</button>
       <h1>Matches</h1>
+      
       
       <div className="match-container">
         {user &&

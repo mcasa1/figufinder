@@ -106,7 +106,7 @@ app.get('/user', async (req, res) => {
 
         const query = {user_id: userId}
         const user = await users.findOne(query)
-        res.send(user)
+       
 
     } finally {
         await client.close()
@@ -132,7 +132,7 @@ app.put('/addhave', async (req, res) => {
             $push: {have : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        res.send(user)
+        
     } finally {
         await client.close()
     }
@@ -153,7 +153,7 @@ app.put('/removehave', async (req, res) => {
             $pull: {have : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        res.send(user)
+        
     } finally {
         await client.close()
     }
@@ -174,7 +174,7 @@ app.put('/addneed', async (req, res) => {
             $push: {need : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        res.send(user)
+        
     } finally {
         await client.close()
     }
@@ -195,7 +195,7 @@ app.put('/removeneed', async (req, res) => {
             $pull: {need : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        res.send(user)
+        
     } finally {
         await client.close()
     }
@@ -307,7 +307,7 @@ app.get('/users', async (req, res) => {
 
         const foundUsers = await users.aggregate(pipeline).toArray()
 
-        res.json(foundUsers)
+        
 
     } finally {
         await client.close()

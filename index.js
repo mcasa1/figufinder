@@ -1,4 +1,4 @@
-const PORT = 8000
+const port = process.env.PORT || 8000;
 const express = require('express')
 const {MongoClient} = require('mongodb')
 const {v4: uuidv4} = require('uuid')
@@ -10,6 +10,8 @@ require('dotenv').config()
 const path = require("path")
 
 const uri = process.env.URI
+
+
 
 const app = express()
 app.use(cors())
@@ -486,4 +488,4 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-app.listen(PORT, () => console.log('server running on PORT ' + PORT))
+app.listen(port, () => console.log('server running on PORT ' + port))

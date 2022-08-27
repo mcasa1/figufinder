@@ -13,7 +13,7 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
 // Get Matches from DB
   const getMatch = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/match", {
+      const response = await axios.get("/match", {
         params: { userId },
       });
       
@@ -24,7 +24,7 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/user", {
+      const response = await axios.get("/user", {
         params: { userId },
       });
       setUser(response.data)

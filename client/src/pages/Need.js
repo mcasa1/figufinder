@@ -50,7 +50,7 @@ const Need = () => {
     
     const getUser = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/user', {
+            const response = await axios.get('/user', {
                 params: {userId}
                 
             })
@@ -79,7 +79,7 @@ const Need = () => {
         if (checked) {
             
           try {
-             axios.put('http://localhost:8000/addneed', {
+             axios.put('/addneed', {
                 userId,
                 value
             })
@@ -91,7 +91,7 @@ const Need = () => {
         // Case 2  : The user unchecks the box
         else {
             try {
-                axios.put('http://localhost:8000/removeneed', {
+                axios.put('/removeneed', {
                    userId,
                    value
                })
@@ -130,7 +130,7 @@ const Need = () => {
                                 // if not, add it to the array
 
                             try {
-                                axios.put('http://localhost:8000/addneed', {
+                                axios.put('/addneed', {
                                     userId,
                                     value: options[i].numeros[j]
                                 })

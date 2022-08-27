@@ -34,7 +34,7 @@ const User = () => {
 
     const getUser = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/user', {
+            const response = await axios.get('/user', {
                 params: {userId}
             })
             setUser(response.data)
@@ -69,7 +69,7 @@ const User = () => {
         e.preventDefault()
         try {
             console.log(formDataZona)
-            const response = await axios.put('http://localhost:8000/addzona', {
+            const response = await axios.put('/addzona', {
                 formDataZona
             })
             console.log(response)

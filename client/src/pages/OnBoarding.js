@@ -26,7 +26,7 @@ const OnBoarding = () => {
         e.preventDefault()
         try {
             console.log(formData)
-            const response = await axios.put('http://localhost:8000/user', {
+            const response = await axios.put('/user', {
                 formData
             })
             console.log(response)

@@ -48,7 +48,7 @@ const Have = () => {
     
     const getUser = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/user', {
+            const response = await axios.get('/user', {
                 params: {userId}
             })
             setUser(response.data)
@@ -69,7 +69,7 @@ const Have = () => {
         if (checked) {
             
           try {
-             axios.put('http://localhost:8000/addhave', {
+             axios.put('/addhave', {
                 userId,
                 value
             })
@@ -81,7 +81,7 @@ const Have = () => {
         // Case 2  : The user unchecks the box
         else {
             try {
-                axios.put('http://localhost:8000/removehave', {
+                axios.put('/removehave', {
                    userId,
                    value
                })

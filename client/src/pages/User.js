@@ -102,6 +102,7 @@ const User = () => {
 <div className='onboarding'>
     <button className = "btn" onClick={toDashboard}>Atras</button>
 <h2>TUS ZONAS</h2>
+<h3>Tener en cuenta que los matches solo se van a dar si escriben exactamente la misma zona salvo por mayúsculas o minúsculas</h3>
 {user &&
 
 user.zonas.map((zona, index) => {

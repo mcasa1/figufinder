@@ -82,7 +82,7 @@ app.post('/login', async (req, res) => {
             const token = jwt.sign(user, email, {
                 expiresIn: 60 * 24
             })
-            return res.status(201).json({token, userId: user.user_id})
+             res.status(201).json({token, userId: user.user_id})
         }
 
         return res.status(400).json('Invalid Credentials')

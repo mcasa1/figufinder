@@ -282,7 +282,7 @@ app.get('/match', async (req, res) => {
                 }  
             } else {
                 console.log('no matches')
-                break
+                return
             }
         }
     

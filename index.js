@@ -106,7 +106,8 @@ app.get('/user', async (req, res) => {
 
         const query = {user_id: userId}
         const user = await users.findOne(query)
-       
+        res.send(user)
+        return
 
     } finally {
         await client.close()
@@ -132,7 +133,8 @@ app.put('/addhave', async (req, res) => {
             $push: {have : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        
+        res.send(user)
+        return
     } finally {
         await client.close()
     }
@@ -153,7 +155,8 @@ app.put('/removehave', async (req, res) => {
             $pull: {have : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        
+        res.send(user)
+        return
     } finally {
         await client.close()
     }
@@ -174,7 +177,8 @@ app.put('/addneed', async (req, res) => {
             $push: {need : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        
+        res.send(user)
+        return
     } finally {
         await client.close()
     }
@@ -195,7 +199,8 @@ app.put('/removeneed', async (req, res) => {
             $pull: {need : value}
         }
         const user = await users.updateOne(query, updateDocument)
-        
+        res.send(user)
+        return
     } finally {
         await client.close()
     }
@@ -307,7 +312,8 @@ app.get('/users', async (req, res) => {
 
         const foundUsers = await users.aggregate(pipeline).toArray()
 
-        
+        res.json(foundUsers)
+        return
 
     } finally {
         await client.close()
@@ -350,6 +356,7 @@ app.put('/user', async (req, res) => {
         const insertedUser = await users.updateOne(query, updateDocument)
 
         res.json(insertedUser)
+        return
 
     } finally {
         await client.close()
@@ -407,6 +414,7 @@ app.put('/addzona', async (req, res) => {
         const insertedUser = await users.updateOne(query, updateDocument)
 
         res.json(insertedUser)
+        return
 
     } finally {
         await client.close()
@@ -431,6 +439,7 @@ app.get('/messages', async (req, res) => {
         }
         const foundMessages = await messages.find(query).toArray()
         res.send(foundMessages)
+        return
     } finally {
         await client.close()
     }
@@ -448,6 +457,7 @@ app.post('/message', async (req, res) => {
 
         const insertedMessage = await messages.insertOne(message)
         res.send(insertedMessage)
+        return
     } finally {
         await client.close()
     }

@@ -55,7 +55,7 @@ app.post('/signup', async (req, res) => {
         const token = jwt.sign(insertedUser, sanitizedEmail, {
             expiresIn: 60 * 24
         })
-        return res.status(201).json({token, userId: generatedUserId})
+         res.status(201).json({token, userId: generatedUserId})
 
     } catch (err) {
         console.log(err)

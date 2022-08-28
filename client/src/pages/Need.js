@@ -118,7 +118,7 @@ const Need = () => {
                 {/* Button that selects all */}
                 <button type="button" className = {"btn"} onClick={() => {
                     // window alert asking not to reload the page
-                    window.alert('Esta carga puede tardar un par de minutos porque son muchos datos. No hace falta que la dejes abierta, con solo no refrescar la página es suficiente' ) 
+                    window.alert('Esta carga puede tardar un par de minutos porque son muchos datos. Por favor no refresques la página y no salgas de la página o se va a frenar la carga. Igualmente si no despues podes volver a darle al botón' ) 
                     for (let i = 0; i < options.length; i++) {
                         for (let j = 0; j < options[i].numeros.length; j++) {
                             

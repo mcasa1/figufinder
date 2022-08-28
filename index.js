@@ -123,6 +123,7 @@ app.get('/user', async (req, res) => {
 app.put('/addhave', async (req, res) => {
     const client = new MongoClient(uri)
     const {userId, value} = req.body
+    
 
     try {
         await client.connect()
@@ -133,8 +134,8 @@ app.put('/addhave', async (req, res) => {
         const updateDocument = {
             $push: {have : value}
         }
-        const user = await users.updateOne(query, updateDocument)
-        res.send(user)
+       
+        
         
     } finally {
         await client.close()
@@ -145,18 +146,29 @@ app.put('/addhave', async (req, res) => {
 app.put('/removehave', async (req, res) => {
     const client = new MongoClient(uri)
     const {userId, value} = req.body
+    
 
     try {
         await client.connect()
         const database = client.db('app-data')
         const users = database.collection('users')
-        
         const query = {user_id: userId}
+        const user = await users.findOne(query)
+
+        const userHave = user.have || []
+        const userNeed = user.need || []
+
+        if(userHave.length + userNeed.length <= 200) {
+        
+        
         const updateDocument = {
             $pull: {have : value}
         }
-        const user = await users.updateOne(query, updateDocument)
-        res.send(user)
+    } else {
+        return res.status(400).json('You have too many items')
+    }
+        
+        
         
     } finally {
         await client.close()
@@ -172,13 +184,21 @@ app.put('/addneed', async (req, res) => {
         await client.connect()
         const database = client.db('app-data')
         const users = database.collection('users')
-
         const query = {user_id: userId}
+        const user = await users.findOne(query)
+
+        const userHave = user.have || []
+        const userNeed = user.need || []
+
+        if (userHave.length + userNeed.length <= 200) {
         const updateDocument = {
             $push: {need : value}
         }
-        const user = await users.updateOne(query, updateDocument)
-        res.send(user)
+    } else {
+        return res.status(400).json('You have too many items')
+    }
+        
+        
         
     } finally {
         await client.close()

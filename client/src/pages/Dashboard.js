@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Dashboard = () => {
-    window.alert("Hola, gracias por estar usando la app. Como esto es una herramienta gratuita, esta construida sobre servidores gratuitos que tienen ciertas limitaciones. Es por eso que para que la app te pueda funcionar bien, es necesario que no cargues más de 200 figuritas entre las que necesitas y tus repetidas. Espero que igualmente asi te sirva")
 
     const [user, setUser] = useState(null)
     const cookies = useCookies(['user'])

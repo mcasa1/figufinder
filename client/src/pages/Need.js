@@ -115,7 +115,7 @@ const Need = () => {
         <form>
             <section>    
                 <h2>Carga las que necesitas:</h2>
-                {/* Button that selects all */}
+                {/* Button that selects all
                 <button type="button" className = {"btn"} onClick={() => {
                     // window alert asking not to reload the page
                     window.alert('Esta carga puede tardar un par de minutos porque son muchos datos. Por favor no refresques la página y no salgas de la página o se va a frenar la carga. Igualmente si no despues podes volver a darle al botón' ) 
@@ -152,7 +152,7 @@ const Need = () => {
                 }>Seleccionar todo</button>
 
                 
-                   
+                    */}
             
                 <div className="multiple-input-container">
                     {options.map((option, index) => {

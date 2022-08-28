@@ -73,7 +73,7 @@ const Have = () => {
                 userId,
                 value
             })
-            
+            getUser()
         } catch (err) {
             console.log(err)
         }
@@ -85,7 +85,7 @@ const Have = () => {
                    userId,
                    value
                })
-               
+               getUser()
            } catch (err) {
                console.log(err)
            }

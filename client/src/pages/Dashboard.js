@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Dashboard = () => {
-    
-
     const [user, setUser] = useState(null)
     const cookies = useCookies(['user'])
     
@@ -68,7 +66,6 @@ const Dashboard = () => {
                 
            
             </div>}
-            
         
         
         </div>

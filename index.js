@@ -215,82 +215,79 @@ app.get('/match', async (req, res) => {
         const users = database.collection('users')
         const query = {user_id: userId}
         const user = await users.findOne(query)
+
         const usersList = await users.find({}).toArray()
         const usersFiltered = usersList.filter(user => user.user_id !== userId)
 
         for (let i = 0; i < usersFiltered.length; i++) {
             const userFiltered = usersFiltered[i]
-            const userFilteredHave = userFiltered.have || []
-            const userFilteredNeed = userFiltered.need || []
             const userFilteredZonas = userFiltered.zonas || []
-            
-            const userHave = user.have || []
-            const userNeed = user.need || []
-            const userMatches = user.matches || []
             const userZonas = user.zonas || []
 
-            const userMatchesId = JSON.stringify(userMatches.map(matches => matches.user_id))
-           
-            const userMatchesHas = userMatches.map(matches => matches.has)
-            const userMatchesNeeds = userMatches.map(matches => matches.needs)
-            const match = (userFilteredHave || []).filter(item => (userNeed || []).includes(item))
-            const match2 = (userFilteredNeed || []).filter(item => (userHave || []).includes(item))
-            const match3 = (userFilteredZonas || []).filter(item => (userZonas || []).includes(item))
-         
-            const findCommonZona = (userFilteredZonas, userZonas) => {
-                for (let i = 0; i < userFilteredZonas.length; i++) {
-                    for (let j = 0; j < userZonas.length; j++) {
-                        if (userFilteredZonas[i] === userZonas[j]) {
-                            return true
-                        }
-                    }   
-                }
-                return false
-            }
-
-            if (match.length > 0 && match2.length > 0 && findCommonZona(userFilteredZonas, userZonas)) {
+            for (let i = 0; i < userFilteredZonas.length; i++) {
+                for (let j = 0; j < userZonas.length; j++) {
+                    if (userFilteredZonas[i] === userZonas[j]) {
+                        const userFilteredHave = userFiltered.have || []
+                        const userFilteredNeed = userFiltered.need || []
             
-            const matches  = {user_id : userFiltered.user_id, nombre : userFiltered.nombre, apellido : userFiltered.apellido, has : match, needs : match2}
-            const matchesString = JSON.stringify(matches)
-            const userMatches = JSON.stringify(user.matches)
+                        const userHave = user.have || []
+                        const userNeed = user.need || []
+                        const userMatches = user.matches || []
 
-            const hasString = JSON.stringify(match)
-            const needsString = JSON.stringify(match2)
+                        const userMatchesId = JSON.stringify(userMatches.map(matches => matches.user_id))
+                        const userMatchesHas = userMatches.map(matches => matches.has)
+                        const userMatchesNeeds = userMatches.map(matches => matches.needs)
+                        const match = (userFilteredHave || []).filter(item => (userNeed || []).includes(item))
+                        const match2 = (userFilteredNeed || []).filter(item => (userHave || []).includes(item))
+                        const match3 = (userFilteredZonas || []).filter(item => (userZonas || []).includes(item))
+
+                        if (match.length > 0 && match2.length > 0 ) {
             
-                if (userMatches.includes(matchesString)) {
-                    console.log('match already in array')
-                    return
-                }
-                // if userMatches was updated and still matches, pull old match and add new match
-                else{
-                    console.log(needsString)
-                    if (userMatchesId.includes(userFiltered.user_id) && (hasString !== userMatchesHas || needsString !== userMatchesNeeds)) {
-                        console.log('match update')
-                        const updateDocument = {
-                            $set : {"matches.$[].has" : match , "matches.$[].needs" : match2} 
+                            const matches  = {user_id : userFiltered.user_id, nombre : userFiltered.nombre, apellido : userFiltered.apellido, has : match, needs : match2}
+                            const matchesString = JSON.stringify(matches)
+                            const userMatches = JSON.stringify(user.matches)
+                
+                            const hasString = JSON.stringify(match)
+                            const needsString = JSON.stringify(match2)
+                            
+                                if (userMatches.includes(matchesString)) {
+                                    console.log('match already in array')
+                                    return
+                                }
+                                // if userMatches was updated and still matches, pull old match and add new match
+                                else{
+                                    if (userMatchesId.includes(userFiltered.user_id) && (hasString !== userMatchesHas || needsString !== userMatchesNeeds)) {
+                                        console.log('match update')
+                                        const updateDocument = {
+                                            $set : {"matches.$[].has" : match , "matches.$[].needs" : match2} 
+                                        }
+                                        const user = await users.updateOne(query, updateDocument) 
+                                    }
+                                        else{
+                                    console.log('match not in array')
+                
+                                    const updateDocument = {
+                                        $push: {matches : {user_id : userFiltered.user_id, nombre : userFiltered.nombre, apellido : userFiltered.apellido, has : match, needs : match2, zonas : match3}}
+                                    }
+                                    const user = await users.updateOne(query, updateDocument)
+                                }
+                                }  
+                            } else {
+                                console.log('no matches')
+                                return
+                            }
+                        }else {
+                            console.log('no matches')
+                            return
                         }
-                        const user = await users.updateOne(query, updateDocument) 
-                    }
-                        else{
-                    console.log('match not in array')
-
-                    const updateDocument = {
-                        $push: {matches : {user_id : userFiltered.user_id, nombre : userFiltered.nombre, apellido : userFiltered.apellido, has : match, needs : match2, zonas : match3}}
-                    }
-                    const user = await users.updateOne(query, updateDocument)
-                }
-                }  
-            } else {
-                console.log('no matches')
-                return
+                    } 
+                }   
             }
-        }
-    
-        
-    } finally {
+        }finally {
         await client.close()
     }
 } )
+
 
 
 // Get all Users by userIds in the Database

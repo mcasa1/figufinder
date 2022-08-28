@@ -215,20 +215,23 @@ app.get('/match', async (req, res) => {
         const users = database.collection('users')
         const query = {user_id: userId}
         const user = await users.findOne(query)
-
+        console.log("fetching all users ")
         const usersList = await users.find({}).toArray()
         const usersFiltered = usersList.filter(user => user.user_id !== userId)
-
+        console.log(usersFiltered)
         for (let i = 0; i < usersFiltered.length; i++) {
             const userFiltered = usersFiltered[i]
             const userFilteredZonas = userFiltered.zonas || []
             const userZonas = user.zonas || []
-
+            console.log(userFiltered)
             for (let i = 0; i < userFilteredZonas.length; i++) {
                 for (let j = 0; j < userZonas.length; j++) {
                     if (userFilteredZonas[i] === userZonas[j]) {
+                        console.log("zonas match found")
                         const userFilteredHave = userFiltered.have || []
+                        console.log(userFilteredHave)
                         const userFilteredNeed = userFiltered.need || []
+                        console.log(userFilteredNeed)
             
                         const userHave = user.have || []
                         const userNeed = user.need || []
@@ -238,11 +241,13 @@ app.get('/match', async (req, res) => {
                         const userMatchesHas = userMatches.map(matches => matches.has)
                         const userMatchesNeeds = userMatches.map(matches => matches.needs)
                         const match = (userFilteredHave || []).filter(item => (userNeed || []).includes(item))
+                        console.log(match)
                         const match2 = (userFilteredNeed || []).filter(item => (userHave || []).includes(item))
+                        console.log(match2)
                         const match3 = (userFilteredZonas || []).filter(item => (userZonas || []).includes(item))
 
                         if (match.length > 0 && match2.length > 0 ) {
-            
+                            console.log("match found")
                             const matches  = {user_id : userFiltered.user_id, nombre : userFiltered.nombre, apellido : userFiltered.apellido, has : match, needs : match2}
                             const matchesString = JSON.stringify(matches)
                             const userMatches = JSON.stringify(user.matches)

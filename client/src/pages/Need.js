@@ -83,7 +83,7 @@ const Need = () => {
                 userId,
                 value
             })
-            getUser()
+            
         } catch (err) {
             console.log(err)
         }
@@ -95,7 +95,7 @@ const Need = () => {
                    userId,
                    value
                })
-               getUser()
+               
            } catch (err) {
                console.log(err)
            }
@@ -126,6 +126,8 @@ const Need = () => {
                             // check if numero is already in the array database
                             if (user.need.includes(options[i].numeros[j])) {
                                 
+                                console.log('numero ya existe')
+                                
                             } else {
                                 // if not, add it to the array
 
@@ -134,7 +136,7 @@ const Need = () => {
                                     userId,
                                     value: options[i].numeros[j]
                                 })
-                                getUser()
+                                
                             } catch (error) {
                                 console.log(error)
                             }

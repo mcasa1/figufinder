@@ -8,7 +8,7 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
 
   const [user, setUser] = useState(null);
   const cookies = useCookies(["user"]);
-  const userId = cookies[0].UserId;
+  const userId = cookies.UserId;
 
 // Get Matches from DB
   const getMatch = async () => {

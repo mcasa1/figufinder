@@ -28,7 +28,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        getUser()
+        getUser();
         
     },[]);
 

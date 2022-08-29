@@ -57,9 +57,9 @@ const Have = () => {
         }
     }
     useEffect(() => {
-        getUser()
+        getUser();
         
-    },[])
+    },[]);
     const handleChangeHave = (e) => {
         // Destructuring
         const { value, checked } = e.target;

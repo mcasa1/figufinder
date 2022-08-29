@@ -59,7 +59,9 @@ const OnBoarding = () => {
             />
 
             <div className="onboarding">
+            
                 <h2>CREATE ACCOUNT</h2>
+                
 
                 <form onSubmit={handleSubmit}>
                     <section>

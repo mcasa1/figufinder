@@ -63,6 +63,7 @@ const Dashboard = () => {
                 onClick={ToHave}>
                     Agrega las que tenes repetidas
                 </button>
+                <h3>Gracias por estar usando la herramienta! Queria avisarte que por ser una herramienta gratis esta tiene sus limitaciones. Es por esto que para que la app te funcione limite la cantidad de figuritas que se pueden cargar por persona a 200, entre tus repetidas y las que necesitas hasta que pueda encontrar una mejor solución. Espero que igualmente asi te sirva!</h3>
                 
                 
            

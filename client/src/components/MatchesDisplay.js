@@ -35,11 +35,14 @@ const MatchesDisplay = ({matches, setClickedUser}) => {
   }
 
   useEffect(() => {
-    getUser();
+    
     getMatch();
   }, [matches]);
  
-
+  useEffect(() => {
+    
+    getUser();
+  }, []);
 
 
 // return matches

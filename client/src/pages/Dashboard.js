@@ -30,7 +30,7 @@ const Dashboard = () => {
     useEffect(() => {
         getUser()
         
-    },[])
+    },[]);
 
 
 
